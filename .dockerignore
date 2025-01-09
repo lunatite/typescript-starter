@@ -1,0 +1,23 @@
+# Ignore node_modules and build outputs
+node_modules
+dist
+
+# Ignore test files
+test
+*.spec.test
+
+# Ignore local environment files
+.env
+.env.*
+
+# Ignore configuration files not needed in the Docker image
+*.log
+.git
+.gitignore
+.prettierrc
+.eslintrc.js
+README.md
+
+# Ignore Docker-related files
+.dockerignore
+Dockerfile
