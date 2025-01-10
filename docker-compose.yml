@@ -1,9 +1,9 @@
 services:
-  # Database
+  # Databases
   mysql:
     image: mysql:latest
     restart: always
-    container_name: db
+    container_name: mysql
     environment:
       - MYSQL_ROOT_PASSWORD=my-secret-pw
       - MYSQL_DATABASE=test
@@ -11,5 +11,16 @@ services:
       - '3306:3306'
     volumes:
       - mysql_data:/var/lib/mysql
+  redis:
+    image: redis:latest
+    restart: always
+    container_name: redis
+    privileged: true
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis-data:/data
+    command: ['redis-server', '--appendonly', 'yes']
 volumes:
   mysql_data:
+  redis-data:
