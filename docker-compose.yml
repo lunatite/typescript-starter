@@ -35,13 +35,13 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      # target: development
     volumes:
       - .:/app
     ports:
       - '3000:3000'
     environment:
       - NODE_ENV=development
-    command: npm run start:dev
 volumes:
   redis-data:
   postgres-data:
