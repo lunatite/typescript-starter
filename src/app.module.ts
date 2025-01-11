@@ -1,5 +1,6 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
+import { RedisModule } from "@liaoliaots/nestjs-redis";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 
@@ -14,6 +15,12 @@ import { AppService } from "./app.service";
       database: "db",
       entities: [],
       synchronize: true,
+    }),
+    RedisModule.forRoot({
+      config: {
+        host: "redis",
+        port: 6379,
+      },
     }),
   ],
   controllers: [AppController],
