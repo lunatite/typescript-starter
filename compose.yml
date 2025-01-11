@@ -1,6 +1,6 @@
 services:
   # Databases
-  postgres:
+  db:
     image: postgres:16-alpine
     container_name: postgres
     restart: always
@@ -29,7 +29,7 @@ services:
     ports:
       - '8080:8080'
     depends_on:
-      - postgres
+      - db
   app:
     container_name: app
     build:
@@ -37,11 +37,13 @@ services:
       dockerfile: Dockerfile
       # target: development
     volumes:
-      - .:/app
+      - ./src:/app/src
     ports:
       - '3000:3000'
     environment:
       - NODE_ENV=development
+    depends_on:
+      - db
 volumes:
   redis-data:
   postgres-data:
